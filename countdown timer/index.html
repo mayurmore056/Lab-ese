@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Countdown Timer</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container */
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Display */
+#display {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+/* Input */
+input {
+    padding: 8px;
+    width: 80px;
+    text-align: center;
+}
+
+/* Buttons */
+button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #4CAF50;
+    color: white;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.pause {
+    background: #ff9800;
+}
+
+.reset {
+    background: #f44336;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Countdown Timer</h2>
+
+    <input type="number" id="minutes" placeholder="Min" min="1">
+
+    <div id="display">00:00</div>
+
+    <button onclick="startTimer()">Start</button>
+    <button class="pause" onclick="pauseTimer()">Pause</button>
+    <button class="reset" onclick="resetTimer()">Reset</button>
+</div>
+
+<script>
+let time = 0;
+let interval = null;
+
+function updateDisplay() {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    document.getElementById("display").innerText =
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function startTimer() {
+    if (interval) return; // prevent multiple timers
+
+    const input = document.getElementById("minutes").value;
+
+    if (time === 0) {
+        if (!input || input <= 0) {
+            alert("Enter valid minutes");
+            return;
+        }
+        time = input * 60;
+    }
+
+    interval = setInterval(() => {
+        if (time > 0) {
+            time--;
+            updateDisplay();
+        } else {
+            clearInterval(interval);
+            interval = null;
+            alert("Time's up!");
+        }
+    }, 1000);
+}
+
+function pauseTimer() {
+    clearInterval(interval);
+    interval = null;
+}
+
+function resetTimer() {
+    clearInterval(interval);
+    interval = null;
+    time = 0;
+    updateDisplay();
+}
+</script>
+
+</body>
+</html>

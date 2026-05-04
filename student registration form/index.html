@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Registration Form</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Form container */
+.form-container {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Inputs */
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Focus effect */
+input:focus, select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76,175,80,0.3);
+}
+
+/* Inline group (radio & checkbox) */
+.inline-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inline-group label {
+    font-weight: normal;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+}
+</style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>Student Registration</h2>
+
+    <form>
+
+        <!-- Full Name -->
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" required minlength="3" placeholder="Enter your name">
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required placeholder="Enter your email">
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <label>Phone (10 digits)</label>
+            <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="Enter phone number">
+        </div>
+
+        <!-- DOB -->
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" name="dob" required>
+        </div>
+
+        <!-- Course -->
+        <div class="form-group">
+            <label>Course</label>
+            <select name="course" required>
+                <option value="">Select Course</option>
+                <option>BCA</option>
+                <option>BSc IT</option>
+                <option>BTech</option>
+                <option>MCA</option>
+            </select>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-group">
+            <label>Gender</label>
+            <div class="inline-group">
+                <label><input type="radio" name="gender" required> Male</label>
+                <label><input type="radio" name="gender"> Female</label>
+                <label><input type="radio" name="gender"> Other</label>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="form-group">
+            <label>Skills</label>
+            <div class="inline-group">
+                <label><input type="checkbox"> HTML</label>
+                <label><input type="checkbox"> CSS</label>
+                <label><input type="checkbox"> JavaScript</label>
+                <label><input type="checkbox"> Python</label>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit">Register</button>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz App</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Container */
+      .quiz-container {
+        background: white;
+        padding: 25px;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 15px;
+      }
+
+      /* Options */
+      .option {
+        display: block;
+        background: #eee;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .option:hover {
+        background: #ddd;
+      }
+
+      /* Button */
+      button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: #4caf50;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="quiz-container">
+      <h2 id="question">Question</h2>
+      <div id="options"></div>
+      <button onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+      const quiz = [
+        {
+          question: "What does HTML stand for?",
+          options: [
+            "Hyper Text Markup Language",
+            "High Tech Machine Learning",
+            "Hyperlink Text Mode Language",
+            "None",
+          ],
+          answer: 0,
+        },
+        {
+          question: "Which language is used for styling?",
+          options: ["HTML", "Python", "CSS", "C++"],
+          answer: 2,
+        },
+        {
+          question: "Which is a JavaScript framework?",
+          options: ["React", "Django", "Flask", "Laravel"],
+          answer: 0,
+        },
+        {
+          question: "Which tag is used for images?",
+          options: ["<img>", "<image>", "<pic>", "<src>"],
+          answer: 0,
+        },
+        {
+          question: "Which is NOT a programming language?",
+          options: ["Java", "HTML", "Python", "C"],
+          answer: 1,
+        },
+      ];
+
+      let current = 0;
+      let score = 0;
+      let answered = false; // 🔥 important
+
+      function loadQuestion() {
+        answered = false;
+
+        const q = quiz[current];
+        document.getElementById("question").innerText = q.question;
+
+        const optionsDiv = document.getElementById("options");
+        optionsDiv.innerHTML = "";
+
+        q.options.forEach((opt, index) => {
+          const btn = document.createElement("div");
+          btn.classList.add("option");
+          btn.innerText = opt;
+
+          btn.onclick = () => selectAnswer(btn, index);
+
+          optionsDiv.appendChild(btn);
+        });
+      }
+
+      function selectAnswer(element, index) {
+        if (answered) return; // ❌ prevent multiple clicks
+
+        answered = true;
+
+        const options = document.querySelectorAll(".option");
+
+        options.forEach((opt, i) => {
+          opt.style.pointerEvents = "none"; // disable clicks
+
+          if (i === quiz[current].answer) {
+            opt.style.background = "#4CAF50"; // correct
+            opt.style.color = "white";
+          } else if (i === index) {
+            opt.style.background = "#f44336"; // wrong
+            opt.style.color = "white";
+          }
+        });
+
+        if (index === quiz[current].answer) {
+          score++;
+        }
+      }
+
+      function nextQuestion() {
+        if (!answered) {
+          alert("Please select an answer!");
+          return;
+        }
+
+        current++;
+
+        if (current < quiz.length) {
+          loadQuestion();
+        } else {
+          showResult();
+        }
+      }
+
+      function showResult() {
+        const container = document.querySelector(".quiz-container");
+
+        let message = "";
+        if (score === quiz.length) {
+          message = "Excellent!";
+        } else if (score >= 3) {
+          message = "Good job!";
+        } else {
+          message = "Keep practicing!";
+        }
+
+        container.innerHTML = `
+        <h2>Your Score: ${score}/${quiz.length}</h2>
+        <p>${message}</p>
+    `;
+      }
+
+      loadQuestion();
+    </script>
+  </body>
+</html>

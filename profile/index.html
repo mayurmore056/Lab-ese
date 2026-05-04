@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile Card</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .card {
+        background: #fff;
+        width: 320px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .profile-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      h2 {
+        margin: 10px 0 5px;
+      }
+
+      .bio {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .skill {
+        text-align: left;
+        margin-bottom: 10px;
+      }
+
+      .skill-name {
+        font-size: 13px;
+        margin-bottom: 3px;
+      }
+
+      .progress {
+        background: #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 8px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: #4caf50;
+        width: 0;
+        transition: width 1s ease-in-out;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+      }
+
+      .follow {
+        background: #4caf50;
+        color: white;
+      }
+
+      .follow:hover {
+        background: #45a049;
+      }
+
+      .message {
+        background: #2196f3;
+        color: white;
+      }
+
+      .message:hover {
+        background: #1e88e5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img
+        src="https://via.placeholder.com/100"
+        alt="Profile"
+        class="profile-img"
+      />
+
+      <h2>John Doe</h2>
+      <p class="bio">
+        Frontend Developer passionate about creating beautiful and functional
+        web experiences.
+      </p>
+
+      <div class="skill">
+        <div class="skill-name">HTML</div>
+        <div class="progress">
+          <div class="progress-bar" style="width: 90%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">CSS</div>
+        <div class="progress">
+          <div class="progress-bar" style="width: 80%"></div>
+        </div>
+      </div>
+
+      <div class="skill">
+        <div class="skill-name">JavaScript</div>
+        <div class="progress">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="follow">Follow</button>
+        <button class="message">Message</button>
+      </div>
+    </div>
+  </body>
+</html>

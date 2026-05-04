@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Calculator box */
+      .calculator {
+        background: #222;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+      }
+
+      /* Display */
+      #display {
+        width: 95%;
+        height: 50px;
+        font-size: 20px;
+        text-align: right;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+      }
+
+      /* Buttons grid */
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      /* Buttons */
+      button {
+        padding: 15px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      /* Special buttons */
+      .operator {
+        background: #ff9500;
+        color: white;
+      }
+
+      .equal {
+        background: #4caf50;
+        color: white;
+        grid-column: span 2;
+      }
+
+      .clear {
+        background: #f44336;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="calculator">
+      <input type="text" id="display" readonly />
+
+      <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="append('/')">÷</button>
+        <button onclick="append('*')">×</button>
+        <button onclick="append('-')">−</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('+')">+</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+
+      function append(value) {
+        display.value += value;
+      }
+
+      function clearDisplay() {
+        display.value = "";
+      }
+
+      function calculate() {
+        try {
+          let exp = display.value;
+
+          // Handle starting negative number
+          exp = exp.replace(/^\-/, "0-");
+
+          // Split into numbers and operators
+          let tokens = exp.match(/(\d+\.?\d*|\+|\-|\*|\/)/g);
+
+          if (!tokens) {
+            display.value = "Error";
+            return;
+          }
+
+          // Convert numbers
+          let nums = [];
+          let ops = [];
+
+          for (let i = 0; i < tokens.length; i++) {
+            if (isNaN(tokens[i])) {
+              ops.push(tokens[i]);
+            } else {
+              nums.push(parseFloat(tokens[i]));
+            }
+          }
+
+          // Handle * and /
+          for (let i = 0; i < ops.length; i++) {
+            if (ops[i] === "*" || ops[i] === "/") {
+              let result =
+                ops[i] === "*" ? nums[i] * nums[i + 1] : nums[i] / nums[i + 1];
+
+              nums.splice(i, 2, result);
+              ops.splice(i, 1);
+              i--;
+            }
+          }
+
+          // Handle + and -
+          let result = nums[0];
+
+          for (let i = 0; i < ops.length; i++) {
+            if (ops[i] === "+") result += nums[i + 1];
+            else result -= nums[i + 1];
+          }
+
+          display.value = result;
+        } catch (e) {
+          display.value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>

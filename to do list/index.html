@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-Do List</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+      }
+
+      /* Container */
+      .container {
+        background: white;
+        padding: 20px;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Input */
+      input {
+        width: 75%;
+        padding: 10px;
+      }
+
+      button {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      /* Task list */
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+      }
+
+      li {
+        padding: 10px;
+        background: #eee;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+      }
+
+      /* Completed */
+      .completed {
+        text-decoration: line-through;
+        color: gray;
+      }
+
+      /* Filter buttons */
+      .filters {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .filters button {
+        flex: 1;
+        margin: 2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>To-Do List</h2>
+
+      <input type="text" id="taskInput" placeholder="Enter task" />
+      <button onclick="addTask()">Add</button>
+
+      <ul id="taskList"></ul>
+
+      <div class="filters">
+        <button onclick="setFilter('all')">All</button>
+        <button onclick="setFilter('active')">Active</button>
+        <button onclick="setFilter('completed')">Completed</button>
+      </div>
+    </div>
+
+    <script>
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      let filter = "all";
+
+      function saveTasks() {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      function renderTasks() {
+        const list = document.getElementById("taskList");
+        list.innerHTML = "";
+
+        let filteredTasks = tasks.filter((task) => {
+          if (filter === "active") return !task.completed;
+          if (filter === "completed") return task.completed;
+          return true;
+        });
+
+        filteredTasks.forEach((task, index) => {
+          const li = document.createElement("li");
+
+          li.innerHTML = `
+            <span class="${task.completed ? "completed" : ""}" onclick="toggleTask(${index})">
+                ${task.text}
+            </span>
+            <button onclick="deleteTask(${index})">X</button>
+        `;
+
+          list.appendChild(li);
+        });
+      }
+
+      function addTask() {
+        const input = document.getElementById("taskInput");
+        const text = input.value.trim();
+
+        if (text === "") return;
+
+        tasks.push({ text, completed: false });
+        input.value = "";
+
+        saveTasks();
+        renderTasks();
+      }
+
+      function toggleTask(index) {
+        tasks[index].completed = !tasks[index].completed;
+        saveTasks();
+        renderTasks();
+      }
+
+      function deleteTask(index) {
+        tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
+      }
+
+      function setFilter(type) {
+        filter = type;
+        renderTasks();
+      }
+
+      // Initial render
+      renderTasks();
+    </script>
+  </body>
+</html>
