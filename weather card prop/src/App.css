@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Base card */
+.card {
+  width: 200px;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 🌞 Sunny (yellow/orange) */
+.sunny {
+  background: linear-gradient(to right, #fceabb, #f8b500);
+}
+
+/* 🌧 Rainy (blue) */
+.rainy {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* ☁️ Cloudy (grey) */
+.cloudy {
+  background: linear-gradient(to right, #bdc3c7, #2c3e50);
+}
+
+/* ❄️ Snowy (light blue/white) */
+.snowy {
+  background: linear-gradient(to right, #e6dada, #274046);
+}
