@@ -1,0 +1,8 @@
+Usage:
+node index.js --create file.txt
+node index.js --read file.txt
+node index.js --delete file.txt
+node index.js --list
+run above in the terminal one by one
+once a file is created add data manually
+hi i am mayur

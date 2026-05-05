@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+/* Card */
+.card {
+  margin: 20px auto;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 15px;
+}
+
+/* LIGHT THEME */
+.light {
+  background: #f4f6f9;
+  color: black;
+}
+
+/* DARK THEME */
+.dark {
+  background: #222;
+  color: white;
+}

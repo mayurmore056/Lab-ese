@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Layout */
+.layout {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Breed list */
+.list {
+  width: 200px;
+  height: 300px;
+  overflow-y: scroll;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.list p {
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.list p:hover {
+  color: #4CAF50;
+}
+
+.active {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+/* Image viewer */
+.viewer {
+  width: 300px;
+}
+
+.viewer img {
+  width: 100%;
+  border-radius: 10px;
+}

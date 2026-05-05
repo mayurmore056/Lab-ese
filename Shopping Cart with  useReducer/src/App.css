@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Product cards */
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card {
+  background: white;
+  padding: 10px;
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Cart items */
+.cart-item {
+  background: white;
+  margin: 10px auto;
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+button {
+  margin: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

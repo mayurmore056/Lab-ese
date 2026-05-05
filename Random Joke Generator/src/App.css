@@ -1,0 +1,29 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+select {
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  width: 300px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  min-height: 80px;
+}
+
+button {
+  padding: 8px 15px;
+  cursor: pointer;
+}
